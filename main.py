@@ -120,12 +120,12 @@ class Manager:
         
 class ApartmentSettlement(BaseModel):
     #Zmiana nazwy zmiennej na bardziej zrozumiałą
-    apartment_number: str
+    apartment_nr: str
     settlement_year: int
     settlement_month: int
-    bill_sum_pln: float
-    rent_sum_pln: float
-    left_to_pay: float
+    bill_sum_zl: float
+    rent_sum_zl: float
+    sum_left_to_pay: float
 
     @staticmethod
     def from_json_file(file_path: str) -> Dict[str,'ApartmentSettlement']:
