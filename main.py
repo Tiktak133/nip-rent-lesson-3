@@ -99,7 +99,22 @@ class Manager:
         self.tenants = Tenant.from_json_file(self.parameters.tenants_json_path)
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
+        
+class ApartmentSettlement(BaseModel):
+    apartment: str
+    settlement_year: int
+    settlement_month: int
+    bill_sum_pln: float
+    rent_sum_pln: float
+    left_to_pay: float
 
+    @staticmethod
+    def from_json_file(file_path: str) -> Dict[str,'ApartmentSettlement']:
+        data = None
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        assert isinstance(data, dict), "Expected a dictionary of apartment settlements"
+        return {key: ApartmentSettlement(**apartmentsettlement) for key, apartmentsettlement in data.items()}
 
 if __name__ == '__main__':
     parameters = Parameters()
