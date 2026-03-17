@@ -101,7 +101,8 @@ class Manager:
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
         
 class ApartmentSettlement(BaseModel):
-    apartment: str
+    #Zmiana nazwy zmiennej na bardziej zrozumiałą
+    apartment_number: str
     settlement_year: int
     settlement_month: int
     bill_sum_pln: float
