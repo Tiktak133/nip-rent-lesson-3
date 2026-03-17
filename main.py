@@ -50,6 +50,24 @@ class Tenant(BaseModel):
         return {key: Tenant(**tenant) for key, tenant in data.items()}
     
 
+# Model rozliczania najemcy
+class TenantSettlement(BaseModel):
+    tenant: str
+    year: str
+    month: str
+    apartment: str
+    rent_pln: float
+    bills_pln: float
+    
+    @staticmethod
+    def from_json_file(file_path: str) -> Dict[str,'Tenant']:
+        data = None
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+        assert isinstance(data, dict), "Expected a dictionary for TenantSettlement"
+        return {key: Tenant(**tenant) for key, tenant in data.items()}
+    
+
 class Transfer(BaseModel):
     amount_pln: float
     date: str
